@@ -20,3 +20,10 @@ app.engine('handlebars', expbs({
 }));
 
 app.set('view engine', 'handlebars')
+
+// Body Parser setup
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
