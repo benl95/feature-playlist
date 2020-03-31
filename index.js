@@ -78,8 +78,12 @@ async function listDatabases(client) {
 };
 
 // Routing 
-app.get('/playlist', (req, res) => {
+app.get('/', (req, res) => {
     res.render('playlist')
+})
+
+app.get('/add', (req, res) => {
+    res.render('addsong')
 })
 
 // Port
