@@ -1,23 +1,19 @@
   /* Remove padding and margin */
-
   * {
       margin: 0;
       padding: 0;
       border: 0;
   }
 
-  /* Font Face
-
-  @import url(//db.onlinewebfonts.com/c/25a1e83fae9330ddaffeba43da2dd762?family=Intro+Inline);
-
+  /* Font Face */
   @font-face {
       src: url("//db.onlinewebfonts.com/t/25a1e83fae9330ddaffeba43da2dd762.eot");
       src: url("//db.onlinewebfonts.com/t/25a1e83fae9330ddaffeba43da2dd762.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/25a1e83fae9330ddaffeba43da2dd762.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/25a1e83fae9330ddaffeba43da2dd762.woff") format("woff"), url("//db.onlinewebfonts.com/t/25a1e83fae9330ddaffeba43da2dd762.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/25a1e83fae9330ddaffeba43da2dd762.svg#Intro Inline") format("svg");
   }
 
-  /* Fonts */
-  /* body {
+  /* Font styles */
+  body {
       font-family: -apple-system-headine,
           BlinkMacSystemFont,
           sans-serif;
-  } */
+  }
