@@ -124,7 +124,7 @@ app.post('/add', (req, res) => {
 
 // Render data to HBS 
 app.get('/', (req, res) => {
-    favouriteSongs.find({}, function (err, favouriteSongs) {
+    favouriteSongs.find({}, function (err, favouritesongs) {
         if (err) return handleError(err)
         res.render('playlist', {
             favouritesongs: favouritesongs

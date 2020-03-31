@@ -3,7 +3,7 @@
     <form action='/edit' method='post' id='editSong'>
         <label for='current-song'>Current song</label>
         <select id='currentSong'>
-            {{#each playlists}}
+            {{#each favouriteSongs}}
             <option class='songInfo'>{{song}}/{{artist}}</option>
             {{/each}}
         </select>
