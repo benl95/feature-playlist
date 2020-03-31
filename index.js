@@ -16,7 +16,7 @@ app.engine('handlebars', handlebars({
 
 app.set('view engine', 'handlebars')
 
-// Body Parser setup
+// Body-parser setup
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -93,4 +93,41 @@ app.get('/edit', (req, res) => {
 // Port
 app.listen(8080, () => {
     console.log('Server is starting on port', 8080)
+})
+
+// Schema
+const Schema = new mongoose.Schema({
+    song: String,
+    artist: String,
+    genre: String
+});
+
+// Model
+const favouriteSongs = mongoose.model('favouriteSongs', Schema)
+
+// Post song to DB 
+app.post('/add', (req, res) => {
+    const new_favouriteSongs = new favouriteSongs({
+        song: req.body.song,
+        artist: req.body.artist,
+        genre: req.body.genre
+    });
+    new_favouriteSongs.save((error) => {
+        if (error) {
+            console.log('There was an error');
+        } else {
+            console.log(new_favouriteSongs);
+        }
+        res.redirect('/')
+    });
+});
+
+// Render data to HBS 
+app.get('/', (req, res) => {
+    favouriteSongs.find({}, function (err, favouritesongs, ) {
+        if (err) return handleError(err)
+        res.render('playlist', {
+            favouritesongs: favouritesongs
+        })
+    })
 })
