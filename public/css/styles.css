@@ -70,3 +70,51 @@
   }
 
   /* Add songs styles */
+
+  #addSong {
+      display: flex;
+      flex-direction: column;
+  }
+
+  #editSong {
+      display: flex;
+      flex-direction: column;
+  }
+
+  label {
+      margin: 0 0 5px 0;
+      font-weight: 600;
+      font-size: 13px;
+      margin: 0 0 3px 1rem;
+  }
+
+  input[type=text] {
+      border: 1px solid black;
+      border-radius: 3px;
+      height: 2rem;
+      padding: 0 0 0 1rem;
+      font-size: 16px;
+      font-weight: 300;
+      margin: 0 1rem 1rem 1rem;
+  }
+
+  #genre {
+      border: 1px solid black;
+      height: 2rem;
+      font-size: 16px;
+      margin: 0 1rem 0 1rem;
+      appearance: none;
+  }
+
+  input[type=submit] {
+      align-self: center;
+      margin: 1rem 0 0 0;
+      width: 7rem;
+      background-color: #1DB954;
+      color: white;
+      font-weight: 300;
+      padding: 1em 1.5em;
+      text-decoration: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  }
