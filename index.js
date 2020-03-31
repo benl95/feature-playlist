@@ -34,7 +34,8 @@ const uri = 'mongodb+srv://admin:' + process.env.DB_PASS + '@projecttech-a3phf.m
 
 mongoose.connect(uri || 'mongodb://localhost/playlist', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 })
 
 mongoose.connection.on('connected', () => {
@@ -86,9 +87,9 @@ app.get('/add', (req, res) => {
     res.render('addsong')
 })
 
-app.get('/edit', (req, res) => {
-    res.render('editsong')
-})
+// app.get('/edit', (req, res) => {
+//     res.render('editsong')
+// })
 
 // Port
 app.listen(8080, () => {
@@ -96,23 +97,23 @@ app.listen(8080, () => {
 })
 
 // Schema
-const Schema = new mongoose.Schema({
+const favourite = new mongoose.Schema({
     song: String,
     artist: String,
     genre: String
 });
 
 // Model
-const favouriteSongs = mongoose.model('favouriteSongs', Schema)
+const top5 = mongoose.model('top5', favourite)
 
 // Post song to DB 
 app.post('/add', (req, res) => {
-    const new_favouriteSongs = favouriteSongs({
+    const new_top5 = new top5({
         song: req.body.song,
         artist: req.body.artist,
         genre: req.body.genre
     });
-    new_favouriteSongs.save((error) => {
+    new_top5.save((error) => {
         if (error) {
             console.log('There was an error');
         } else {
@@ -124,25 +125,35 @@ app.post('/add', (req, res) => {
 
 // Render data to HBS 
 app.get('/', (req, res) => {
-    favouriteSongs.find({}, function (err, favouritesongs) {
+    top5.find({}, function (err, top5) {
         if (err) return handleError(err)
+        console.log(top5)
         res.render('playlist', {
-            favouritesongs: favouritesongs
+            top5: top5
+        })
+    })
+})
+
+app.get('/edit', (req, res) => {
+    top5.find({}, function (err, top5) {
+        if (err) return handleError(err)
+        res.render('editsong', {
+            top5: top5
         })
     })
 })
 
 // Edit song in playlist
 app.post('/edit', (req, res) => {
-    favouriteSongs.findOneAndUpdate({
-        song: req.body.song,
-        artist: req.body.artist,
-        genre: req.body.genre
+    console.log(req.body)
+    top5.findOneAndUpdate({
+        song: req.body.currentSong,
+        artist: req.body.currentSong
     }, {
         $set: {
-            song: req.body.song,
-            artist: req.body.artist,
-            genre: req.body.genre
+            song: req.body.newSong,
+            artist: req.body.newArtist,
+            genre: req.body.newGenre
         }
     }, {
         new: true

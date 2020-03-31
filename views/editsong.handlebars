@@ -1,18 +1,19 @@
 <body>
-    <h2>Edit song</h2>
+    <h1>Edit song</h1>
     <form action='/edit' method='post' id='editSong'>
         <label for='current-song'>Current song</label>
-        <select id='currentSong'>
-            {{#each favouriteSongs}}
-            <option class='songInfo'>{{song}}/{{artist}}</option>
+        <select id='currentSong' name='currentSong'>
+            {{#each top5}}
+            <option class='songInfo'>{{song}} / {{artist}}</option>
             {{/each}}
         </select>
+        <h2>Change to</h2>
         <label for='song'>Song</label>
-        <input type='text' name='song'>
+        <input type='text' name='newSong'>
         <label for='artist'>Artist</label>
-        <input type='text' name='artist'>
+        <input type='text' name='newArtist'>
         <label for='genre'>Genre</label>
-        <select id='genre' name='genre'>
+        <select id='genre' name='newGenre'>
             <option value='deephouse'>Deephouse</option>
             <option value='electro'>Electro</option>
             <option value='hardcore'>Hardcore</option>
