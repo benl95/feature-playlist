@@ -86,6 +86,10 @@ app.get('/add', (req, res) => {
     res.render('addsong')
 })
 
+app.get('/edit', (req, res) => {
+    res.render('editsong')
+})
+
 // Port
 app.listen(8080, () => {
     console.log('Server is starting on port', 8080)
