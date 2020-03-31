@@ -77,6 +77,11 @@ async function listDatabases(client) {
     databasesList.databases.forEach(db => console.log(` - ${db.name}`))
 };
 
+// Routing 
+app.get('/playlist', (req, res) => {
+    res.render('playlist')
+})
+
 // Port
 app.listen(8080, () => {
     console.log('Server is starting on port', 8080)
