@@ -16,4 +16,53 @@
       font-family: -apple-system-headine,
           BlinkMacSystemFont,
           sans-serif;
+      display: flex;
+      flex-direction: column;
+  }
+
+  h1 {
+      text-align: center;
+      margin: 0 0 1rem 0;
+      font-weight: 300;
+      margin: 1rem 0 1rem 0;
+  }
+
+  a {
+      text-decoration: none;
+      color: black;
+  }
+
+  .song-box {
+      padding: 0 1rem 0 1rem;
+      display: block;
+  }
+
+  .song {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 2px 0;
+  }
+
+  .artist {
+      color: #797979;
+      font-size: 14px;
+      font-weight: 300;
+  }
+
+  li {
+      list-style: none;
+  }
+
+  .link-button {
+      text-align: center;
+      align-self: center;
+      margin: 1rem 0 0;
+      width: 7rem;
+      background-color: #1DB954;
+      color: white;
+      font-weight: 300;
+      padding: 1em 1.5em;
+      text-decoration: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   }
