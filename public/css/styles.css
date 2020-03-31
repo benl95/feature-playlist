@@ -36,6 +36,7 @@
   .song-box {
       padding: 0 1rem 0 1rem;
       display: block;
+      margin: 0 0 1rem 0;
   }
 
   .song {

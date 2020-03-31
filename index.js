@@ -87,10 +87,6 @@ app.get('/add', (req, res) => {
     res.render('addsong')
 })
 
-// app.get('/edit', (req, res) => {
-//     res.render('editsong')
-// })
-
 // Port
 app.listen(8080, () => {
     console.log('Server is starting on port', 8080)
@@ -124,10 +120,9 @@ app.post('/add', (req, res) => {
 });
 
 // Render data to HBS 
-app.get('/', (req, res) => {
+app.get('/playlist', (req, res) => {
     top5.find({}, function (err, top5) {
         if (err) return handleError(err)
-        console.log(top5)
         res.render('playlist', {
             top5: top5
         })
@@ -146,23 +141,19 @@ app.get('/edit', (req, res) => {
 // Edit song in playlist
 app.post('/edit', (req, res) => {
     console.log(req.body)
-    top5.findOneAndUpdate({
-        song: req.body.currentSong,
-        artist: req.body.currentSong
-    }, {
-        $set: {
+    top5.updateOne({
+            song: req.body.currentSong,
+        }, {
             song: req.body.newSong,
             artist: req.body.newArtist,
             genre: req.body.newGenre
-        }
-    }, {
-        new: true
-    }, (err, doc) => {
-        if (err) {
-            console.log('Something went wrong')
-        } else {
-            console.log('Successfully updated')
-        }
-        console.log(doc)
-    })
+        },
+        (err, doc) => {
+            if (err) {
+                console.log('Something went wrong')
+            } else {
+                console.log('Successfully updated')
+            }
+            console.log(doc)
+        })
 })
