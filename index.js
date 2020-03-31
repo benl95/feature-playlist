@@ -107,7 +107,7 @@ const favouriteSongs = mongoose.model('favouriteSongs', Schema)
 
 // Post song to DB 
 app.post('/add', (req, res) => {
-    const new_favouriteSongs = new favouriteSongs({
+    const new_favouriteSongs = favouriteSongs({
         song: req.body.song,
         artist: req.body.artist,
         genre: req.body.genre
@@ -116,7 +116,7 @@ app.post('/add', (req, res) => {
         if (error) {
             console.log('There was an error');
         } else {
-            console.log(new_favouriteSongs);
+            console.log('Songs successfully added');
         }
         res.redirect('/')
     });
@@ -124,10 +124,34 @@ app.post('/add', (req, res) => {
 
 // Render data to HBS 
 app.get('/', (req, res) => {
-    favouriteSongs.find({}, function (err, favouritesongs, ) {
+    favouriteSongs.find({}, function (err, favouriteSongs) {
         if (err) return handleError(err)
         res.render('playlist', {
             favouritesongs: favouritesongs
         })
+    })
+})
+
+// Edit song in playlist
+app.post('/edit', (req, res) => {
+    favouriteSongs.findOneAndUpdate({
+        song: req.body.song,
+        artist: req.body.artist,
+        genre: req.body.genre
+    }, {
+        $set: {
+            song: req.body.song,
+            artist: req.body.artist,
+            genre: req.body.genre
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log('Something went wrong')
+        } else {
+            console.log('Successfully updated')
+        }
+        console.log(doc)
     })
 })

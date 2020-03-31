@@ -1,6 +1,12 @@
 <body>
-    <h1>Edit song</h1>
+    <h2>Edit song</h2>
     <form action='/edit' method='post' id='editSong'>
+        <label for='current-song'>Current song</label>
+        <select id='currentSong'>
+            {{#each playlists}}
+            <option class='songInfo'>{{song}}/{{artist}}</option>
+            {{/each}}
+        </select>
         <label for='song'>Song</label>
         <input type='text' name='song'>
         <label for='artist'>Artist</label>
