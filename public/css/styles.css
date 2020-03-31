@@ -104,6 +104,10 @@
       font-size: 16px;
       margin: 0 1rem 0 1rem;
       appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-indent: 1px;
+      text-overflow: '';
   }
 
   input[type=submit] {
