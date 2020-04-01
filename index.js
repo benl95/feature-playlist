@@ -78,20 +78,6 @@ async function listDatabases(client) {
     databasesList.databases.forEach(db => console.log(` - ${db.name}`))
 };
 
-// Routing 
-app.get('/', (req, res) => {
-    res.render('playlist')
-})
-
-app.get('/add', (req, res) => {
-    res.render('addsong')
-})
-
-// Port
-app.listen(8080, () => {
-    console.log('Server is starting on port', 8080)
-})
-
 // Schema
 const favourite = new mongoose.Schema({
     song: String,
@@ -101,6 +87,31 @@ const favourite = new mongoose.Schema({
 
 // Model
 const top5 = mongoose.model('top5', favourite)
+
+// Routing 
+
+app.get('/add', (req, res) => {
+    res.render('addsong')
+})
+
+// Render data to HBS 
+app.get('/', (req, res) => {
+    top5.find({}, function (err, top5) {
+        if (err) return handleError(err)
+        res.render('playlist', {
+            top5: top5
+        })
+    })
+})
+
+app.get('/edit', (req, res) => {
+    top5.find({}, function (err, top5) {
+        if (err) return handleError(err)
+        res.render('editsong', {
+            top5: top5
+        })
+    })
+})
 
 // Post song to DB 
 app.post('/add', (req, res) => {
@@ -119,25 +130,6 @@ app.post('/add', (req, res) => {
     });
 });
 
-// Render data to HBS 
-app.get('/playlist', (req, res) => {
-    top5.find({}, function (err, top5) {
-        if (err) return handleError(err)
-        res.render('playlist', {
-            top5: top5
-        })
-    })
-})
-
-app.get('/edit', (req, res) => {
-    top5.find({}, function (err, top5) {
-        if (err) return handleError(err)
-        res.render('editsong', {
-            top5: top5
-        })
-    })
-})
-
 // Edit song in playlist
 app.post('/edit', (req, res) => {
     console.log(req.body)
@@ -153,7 +145,12 @@ app.post('/edit', (req, res) => {
                 console.log('Something went wrong')
             } else {
                 console.log('Successfully updated')
+                res.redirect('/')
             }
-            console.log(doc)
         })
+})
+
+// Port
+app.listen(8080, () => {
+    console.log('Server is starting on port', 8080)
 })
