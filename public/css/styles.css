@@ -141,3 +141,7 @@
       border-radius: 15px;
       box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   }
+
+  input[type=text]:focus {
+      border: 1px solid #1DB954;
+  }
